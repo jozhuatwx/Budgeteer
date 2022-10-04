@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PlaygroundApi.Entities;
+namespace Playground.Application.Entities;
 
 public abstract class BaseEntity
 {
@@ -13,4 +13,6 @@ public abstract class BaseEntity
 
     public DateTime? LastModifiedDateTime { get; set; }
     public DateTime? DeletedDateTime { get; set; }
+
+    public bool IsDeleted => DeletedDateTime != null;
 }

@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["PlaygroundApi/PlaygroundApi.csproj", "PlaygroundApi/"]
-RUN dotnet restore "PlaygroundApi/PlaygroundApi.csproj"
+COPY ["Application/Application.csproj", "Application/"]
+RUN dotnet restore "Application/Application.csproj"
 COPY . .
-WORKDIR "/src/PlaygroundApi"
-RUN dotnet build "PlaygroundApi.csproj" -c Release -o /app/build
+WORKDIR "/src/Application"
+RUN dotnet build "Application.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "PlaygroundApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Application.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "PlaygroundApi.dll"]
+ENTRYPOINT ["dotnet", "Application.dll"]
