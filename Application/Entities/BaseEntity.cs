@@ -5,8 +5,7 @@ namespace Playground.Application.Entities;
 
 public abstract class BaseEntity
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     [Required]
     public DateTime CreatedDateTime { get; set; }

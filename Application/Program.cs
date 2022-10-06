@@ -73,7 +73,7 @@ builder.Services
                         Id = "Bearer"
                     }
                 },
-                new string[]{}
+                Array.Empty<string>()
             }
         });
     });
@@ -84,6 +84,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.SeedData();
 }
 
 app.UseHttpsRedirection();

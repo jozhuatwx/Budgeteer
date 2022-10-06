@@ -8,7 +8,8 @@ public static class CryptographyUtility
 {
     private const int _iterCount = 1000;
 
-    public static Task<string> GenerateRandomCharactersAsync(int length, CancellationToken cancellationToken = default)
+    public static Task<string> GenerateRandomCharactersAsync(
+        int length, CancellationToken cancellationToken = default)
     {
         return Task.Run(() =>
         {
@@ -19,7 +20,8 @@ public static class CryptographyUtility
         }, cancellationToken);
     }
 
-    public static async Task<string> HashPasswordAsync(string password, CancellationToken cancellationToken = default)
+    public static async Task<string> HashPasswordAsync(
+        string password, CancellationToken cancellationToken = default)
     {
         return Convert.ToBase64String(
             await HashPasswordAsync(
@@ -33,7 +35,8 @@ public static class CryptographyUtility
             ));
     }
 
-    public static async Task<bool> VerifyHashedPasswordAsync(string hashedPasswordStr, string password, CancellationToken cancellationToken = default)
+    public static async Task<bool> VerifyHashedPasswordAsync(
+        string hashedPasswordStr, string password, CancellationToken cancellationToken = default)
     {
         var hashedPassword = Convert.FromBase64String(hashedPasswordStr);
 
@@ -76,7 +79,8 @@ public static class CryptographyUtility
         }
     }
 
-    private static async Task<byte[]> HashPasswordAsync(string password, RandomNumberGenerator rng, KeyDerivationPrf prf, int iterCount, int saltSize, int numBytesRequested, CancellationToken cancellationToken = default)
+    private static async Task<byte[]> HashPasswordAsync(
+        string password, RandomNumberGenerator rng, KeyDerivationPrf prf, int iterCount, int saltSize, int numBytesRequested, CancellationToken cancellationToken = default)
     {
         var salt = new byte[saltSize];
         rng.GetBytes(salt);
@@ -95,7 +99,8 @@ public static class CryptographyUtility
         return outputBytes;
     }
 
-    private static Task<uint> ReadNetworkByteOrderAsync(byte[] buffer, int offset, CancellationToken cancellationToken = default)
+    private static Task<uint> ReadNetworkByteOrderAsync(
+        byte[] buffer, int offset, CancellationToken cancellationToken = default)
     {
         return Task.Run(() =>
             ((uint)buffer[offset + 0] << 24)
@@ -105,7 +110,8 @@ public static class CryptographyUtility
         , cancellationToken);
     }
 
-    private static Task WriteNetworkByteOrderAsync(byte[] buffer, int offset, uint value, CancellationToken cancellationToken = default)
+    private static Task WriteNetworkByteOrderAsync(
+        byte[] buffer, int offset, uint value, CancellationToken cancellationToken = default)
     {
         return Task.Run(() =>
         {

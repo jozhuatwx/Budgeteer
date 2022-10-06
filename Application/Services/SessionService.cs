@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -22,14 +23,16 @@ public class SessionService
     public async Task<UserSessionResponse?> LoginUserAsync(
         LoginUserRequest request, CancellationToken cancellationToken = default)
     {
-        var user = await _context.Users.GetAsync(user => user.Email == request.Email, cancellationToken: cancellationToken);
+        var user = await _context.Users
+            .Include(u => u.RefreshTokens)
+            .GetAsync(user => user.Email == request.Email, cancellationToken: cancellationToken);
 
         if (user == null || !await CryptographyUtility.VerifyHashedPasswordAsync(user.HashedPassword, request.Password, cancellationToken))
         {
             return null;
         }
 
-        return new(await GenerateJwtAsync(user), await GenerateRefreshTokenAsync(user.Id, cancellationToken));
+        return new(await GenerateJwtAsync(user), await GenerateRefreshTokenAsync(user, cancellationToken));
     }
 
     public async Task<UserSessionResponse?> RefreshUserSessionAsync(
@@ -42,14 +45,16 @@ public class SessionService
             return null;
         }
 
-        var user = await _context.Users.GetAsync(user => user.Id == id, cancellationToken: cancellationToken);
+        var user = await _context.Users
+            .Include(u => u.RefreshTokens)
+            .GetAsync(user => user.Id == id, cancellationToken: cancellationToken);
 
         if (user == null)
         {
             return null;
         }
 
-        return new(await GenerateJwtAsync(user), await GenerateRefreshTokenAsync(user.Id, cancellationToken));
+        return new(await GenerateJwtAsync(user), await GenerateRefreshTokenAsync(user, cancellationToken));
     }
 
     private async Task<string> GenerateJwtAsync(
@@ -62,12 +67,12 @@ public class SessionService
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
-                Subject = new(new List<Claim>()
-                {
-                    new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new(ClaimTypes.Name, user.Name),
-                    new(ClaimTypes.Email, user.Email)
-                }),
+                Subject = new(new Claim[]
+            {
+                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new(ClaimTypes.Name, user.Name),
+                new(ClaimTypes.Email, user.Email)
+            }),
                 Issuer = _jwtOptions.Issuer,
                 Audience = _jwtOptions.Audience,
                 Expires = DateTime.UtcNow.AddMinutes(15),
@@ -82,15 +87,17 @@ public class SessionService
     }
 
     private async Task<string> GenerateRefreshTokenAsync(
-        int userId, CancellationToken cancellationToken = default)
+        User user, CancellationToken cancellationToken = default)
     {
-        var refreshTokens = _context.RefreshTokens.Where(token => token.UserId == userId);
-        _context.RefreshTokens.DeleteRange(refreshTokens);
+        if (user.RefreshTokens.Any())
+        {
+            _context.RefreshTokens.DeleteRange(user.RefreshTokens);
+        }
 
         var refreshToken = new RefreshToken()
         {
             Token = await CryptographyUtility.GenerateRandomCharactersAsync(12, cancellationToken),
-            UserId = userId,
+            UserId = user.Id,
             ExpiryDateTime = DateTime.UtcNow.AddDays(7)
         };
 

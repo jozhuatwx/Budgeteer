@@ -32,8 +32,8 @@ public class UserService
             HashedPassword = await CryptographyUtility.HashPasswordAsync(request.Password, cancellationToken)
         };
 
-        await _context.Users.CreateAsync(user);
-        await _context.SaveChangesAsync();
+        await _context.Users.CreateAsync(user, cancellationToken: cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<UserResponse>(user);
     }
@@ -47,7 +47,9 @@ public class UserService
     {
         return Task.Run(() =>
         {
-            if (!claimsPrincipal.TryGetUserId(out var id) || !claimsPrincipal.TryGetUserName(out var name) || !claimsPrincipal.TryGetEmail(out var email))
+            if (!claimsPrincipal.TryGetUserId(out var id)
+                || !claimsPrincipal.TryGetUserName(out var name)
+                || !claimsPrincipal.TryGetEmail(out var email))
             {
                 return null;
             }
