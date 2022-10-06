@@ -16,7 +16,7 @@ public static class IQueryableExtensions
     public static async Task<TEntity?> GetByIdAsync<TEntity>(this IQueryable<TEntity> dbSet,
         int id, bool track = false, bool withSoftDeleted = false, CancellationToken cancellationToken = default) where TEntity : BaseEntity
     {
-        return await dbSet.GetAsync(entity => entity.Id == id, track, withSoftDeleted, cancellationToken);
+        return await dbSet.GetAsync((entity) => entity.Id == id, track, withSoftDeleted, cancellationToken);
     }
 
     public static async Task<TEntity?> GetAsync<TEntity>(this IQueryable<TEntity> dbSet,
@@ -47,6 +47,6 @@ public static class IQueryableExtensions
 
     private static IQueryable<TEntity> WithoutSoftDeleted<TEntity>(this IQueryable<TEntity> query) where TEntity : BaseEntity
     {
-        return query.Where(entity => entity.DeletedDateTime == null);
+        return query.Where((entity) => entity.DeletedDateTime == null);
     }
 }

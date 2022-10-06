@@ -6,8 +6,10 @@ public static class IApplicationBuilderExtensions
 {
     public static IApplicationBuilder SeedData(this IApplicationBuilder applicationBuilder)
     {
-        using var services = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-        using var context = services.ServiceProvider.GetService<IDbContextFactory<PlaygroundContext>>()!.CreateDbContext();
+        using var scope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+        using var context = scope.ServiceProvider
+            .GetService<IDbContextFactory<PlaygroundContext>>()!
+            .CreateDbContext();
 
         if (!context.Users.Any())
         {

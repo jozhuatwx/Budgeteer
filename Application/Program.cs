@@ -12,8 +12,8 @@ var playgroundOptions = builder.Configuration.Get<PlaygroundOptions>()!;
 
 // Database
 builder.Services
-    .AddPooledDbContextFactory<PlaygroundContext>(options => options.UseInMemoryDatabase(playgroundOptions.Database.DatabaseName))
-    .AddScoped(provider => provider.GetRequiredService<IDbContextFactory<PlaygroundContext>>().CreateDbContext());
+    .AddPooledDbContextFactory<PlaygroundContext>((options) => options.UseInMemoryDatabase(playgroundOptions.Database.DatabaseName))
+    .AddScoped((provider) => provider.GetRequiredService<IDbContextFactory<PlaygroundContext>>().CreateDbContext());
 
 // Authentication
 builder.Services
@@ -43,7 +43,10 @@ builder.Services
 // Service
 builder.Services
     .AddScoped<UserService>()
-    .AddScoped<SessionService>();
+    .AddScoped<SessionService>()
+    // Background
+    .AddHostedService<BackgroundWorkerService>()
+    .AddSingleton<BackgroundQueueService>();
 
 // Controller
 builder.Services

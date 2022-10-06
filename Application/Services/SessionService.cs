@@ -24,8 +24,8 @@ public class SessionService
         LoginUserRequest request, CancellationToken cancellationToken = default)
     {
         var user = await _context.Users
-            .Include(u => u.RefreshTokens)
-            .GetAsync(user => user.Email == request.Email, cancellationToken: cancellationToken);
+            .Include((user) => user.RefreshTokens)
+            .GetAsync((user) => user.Email == request.Email, cancellationToken: cancellationToken);
 
         if (user == null || !await CryptographyUtility.VerifyHashedPasswordAsync(user.HashedPassword, request.Password, cancellationToken))
         {
@@ -46,8 +46,8 @@ public class SessionService
         }
 
         var user = await _context.Users
-            .Include(u => u.RefreshTokens)
-            .GetAsync(user => user.Id == id, cancellationToken: cancellationToken);
+            .Include((user) => user.RefreshTokens)
+            .GetAsync((user) => user.Id == id, cancellationToken: cancellationToken);
 
         if (user == null)
         {
