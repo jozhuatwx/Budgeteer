@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Playground.Application.Controllers;
+namespace Playground.Server.Controllers;
 
 [ApiController, Route("[controller]"), Authorize]
 public class UsersController : ControllerBase

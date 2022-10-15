@@ -1,4 +1,4 @@
-﻿namespace Playground.Application.Options;
+﻿namespace Playground.Server.Options;
 
 public class PlaygroundOptions
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Playground.Application.Maps;
+namespace Playground.Server.Maps;
 
 public class UserMaps : Profile
 {

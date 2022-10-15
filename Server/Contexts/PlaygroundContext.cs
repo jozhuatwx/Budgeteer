@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Playground.Application.Contexts;
+namespace Playground.Server.Contexts;
 
 public class PlaygroundContext : DbContext
 {

@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Playground.Application.Extensions;
+namespace Playground.Server.Extensions;
 
 public static class IApplicationBuilderExtensions
 {
-    public static IApplicationBuilder SeedData(this IApplicationBuilder applicationBuilder)
+    public static IApplicationBuilder SeedData(this IApplicationBuilder ApplicationBuilder)
     {
-        using var scope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+        using var scope = ApplicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
         using var context = scope.ServiceProvider
             .GetService<IDbContextFactory<PlaygroundContext>>()!
             .CreateDbContext();
@@ -26,6 +26,6 @@ public static class IApplicationBuilderExtensions
 
         context.SaveChanges();
         
-        return applicationBuilder;
+        return ApplicationBuilder;
     }
 }

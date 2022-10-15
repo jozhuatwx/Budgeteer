@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Playground.Application.Extensions;
+namespace Playground.Server.Extensions;
 
 public static class DbSetExtensions
 {

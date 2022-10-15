@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Playground.Application.Entities;
+namespace Playground.Server.Entities;
 
 public abstract class BaseEntity
 {

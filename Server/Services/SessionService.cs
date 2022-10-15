@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Playground.Application.Services;
+namespace Playground.Server.Services;
 
 public class SessionService
 {

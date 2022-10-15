@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Playground.Application.Entities;
+namespace Playground.Server.Entities;
 
 [Table("RefreshTokens")]
 public class RefreshToken : BaseEntity

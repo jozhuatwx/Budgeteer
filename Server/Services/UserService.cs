@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Security.Claims;
 
-namespace Playground.Application.Services;
+namespace Playground.Server.Services;
 
 public class UserService
 {

@@ -1,4 +1,4 @@
-﻿namespace Playground.Application.Services;
+﻿namespace Playground.Server.Services;
 
 public class BackgroundWorkerService : BackgroundService
 {

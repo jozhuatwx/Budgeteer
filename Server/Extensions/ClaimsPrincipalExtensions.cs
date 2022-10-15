@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace Playground.Application.Extensions;
+namespace Playground.Server.Extensions;
 
 public static class ClaimsPrincipalExtensions
 {

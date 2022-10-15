@@ -1,6 +1,6 @@
 ﻿using System.Threading.Channels;
 
-namespace Playground.Application.Services;
+namespace Playground.Server.Services;
 
 public class BackgroundQueueService
 {
