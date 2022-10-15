@@ -6,14 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>3a9aa2cb-f0ff-4ad4-95d4-2d048fa19dca</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>Playground.Application</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.1.22427.2" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0-rc.1.22427.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0-rc.1.22426.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.2.22476.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0-rc.2.22476.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.2.22472.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0-rc.2.22472.11" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
