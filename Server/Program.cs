@@ -44,9 +44,14 @@ builder.Services
 builder.Services
     .AddScoped<UserService>()
     .AddScoped<SessionService>()
+    .AddScoped<NotificationService>()
     // Background
     .AddHostedService<BackgroundWorkerService>()
     .AddSingleton<BackgroundQueueService>();
+
+// SignalR
+builder.Services
+    .AddSignalR();
 
 // Controller
 builder.Services
@@ -96,5 +101,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<NotificationHub>("/notification");
 
 app.Run();

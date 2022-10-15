@@ -2,16 +2,18 @@
 
 public class BackgroundWorkerService : BackgroundService
 {
-    private readonly BackgroundQueueService _queueService;
+    private readonly BackgroundQueueService _backgroundQueueService;
 
-    public BackgroundWorkerService(BackgroundQueueService queueService)
+    public BackgroundWorkerService(
+        BackgroundQueueService backgroundQueueService)
     {
-        _queueService = queueService;
+        _backgroundQueueService = backgroundQueueService;
     }
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(
+        CancellationToken stoppingToken)
     {
-        await foreach (var action in _queueService.DequeueAsync(stoppingToken))
+        await foreach (var action in _backgroundQueueService.DequeueAsync(stoppingToken))
         {
             await action(stoppingToken);
         }

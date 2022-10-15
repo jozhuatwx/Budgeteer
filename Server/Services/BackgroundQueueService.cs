@@ -15,12 +15,14 @@ public class BackgroundQueueService
         });
     }
 
-    public async Task QueueAsync(Func<CancellationToken, Task> action)
+    public async Task QueueAsync(
+        Func<CancellationToken, Task> action)
     {
         await _channel.Writer.WriteAsync(action);
     }
 
-    public IAsyncEnumerable<Func<CancellationToken, Task>> DequeueAsync(CancellationToken cancellationToken = default)
+    public IAsyncEnumerable<Func<CancellationToken, Task>> DequeueAsync(
+        CancellationToken cancellationToken = default)
     {
         return _channel.Reader.ReadAllAsync(cancellationToken);
     }

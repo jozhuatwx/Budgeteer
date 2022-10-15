@@ -13,10 +13,10 @@ public class SessionService
     private readonly JwtOptions _jwtOptions;
 
     public SessionService(
-        PlaygroundContext context,
+        IDbContextFactory<PlaygroundContext> contextFactory,
         IOptions<PlaygroundOptions> options)
     {
-        _context = context;
+        _context = contextFactory.CreateDbContext();
         _jwtOptions = options.Value.Jwt;
     }
 

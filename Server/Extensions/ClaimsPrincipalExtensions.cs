@@ -19,13 +19,13 @@ public static class ClaimsPrincipalExtensions
         return true;
     }
 
-    public static bool TryGetUserId(this ClaimsPrincipal claims,
+    public static bool TryGetId(this ClaimsPrincipal claims,
         out int userId)
     {
         return int.TryParse(claims.FindFirstValue(ClaimTypes.NameIdentifier), out userId);
     }
 
-    public static bool TryGetUserName(this ClaimsPrincipal claims,
+    public static bool TryGetName(this ClaimsPrincipal claims,
         out string name)
     {
         return claims.TryGetClaim(ClaimTypes.Name, out name);

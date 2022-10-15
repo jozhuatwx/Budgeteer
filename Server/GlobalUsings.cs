@@ -5,3 +5,4 @@ global using Playground.Server.Entities;
 global using Playground.Server.Utilities;
 global using Playground.Server.Extensions;
 global using Playground.Server.Services;
+global using Playground.Server.Hubs;

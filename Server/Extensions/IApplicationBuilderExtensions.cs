@@ -8,7 +8,7 @@ public static class IApplicationBuilderExtensions
     {
         using var scope = ApplicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
         using var context = scope.ServiceProvider
-            .GetService<IDbContextFactory<PlaygroundContext>>()!
+            .GetRequiredService<IDbContextFactory<PlaygroundContext>>()
             .CreateDbContext();
 
         if (!context.Users.Any())
