@@ -58,4 +58,17 @@ public class NotificationService
         return await _context.Notifications
             .GetAllAsync<Notification, NotificationResponse>(_mapper.ConfigurationProvider, cancellationToken: cancellationToken);
     }
+
+    public async Task ReadNotificationAsync(
+        int id, CancellationToken cancellationToken = default)
+    {
+        var notification = await _context.Notifications.GetByIdAsync(id, cancellationToken: cancellationToken);
+
+        if (notification != null)
+        {
+            notification.ReadDateTime = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+    }
 }

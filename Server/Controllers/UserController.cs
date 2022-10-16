@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Playground.Server.Controllers;
 
 [ApiController, Route("[controller]"), Authorize]
-public class UsersController : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly UserService _userService;
     private readonly SessionService _sessionService;
 
-    public UsersController(
+    public UserController(
         UserService userService,
         SessionService sessionService)
     {
@@ -17,28 +17,28 @@ public class UsersController : ControllerBase
         _sessionService = sessionService;
     }
 
-    [HttpGet]
+    [HttpGet("All")]
     public async Task<IActionResult> GetUsersAsync(
         CancellationToken cancellationToken)
     {
         return Ok(await _userService.GetUsersAsync(cancellationToken));
     }
 
-    [HttpPost("User"), AllowAnonymous]
+    [HttpPost, AllowAnonymous]
     public async Task<IActionResult> CreateUserAsync(
         CreateUserRequest request, CancellationToken cancellationToken)
     {
         return Ok(await _userService.CreateUserAsync(request, cancellationToken));
     }
 
-    [HttpGet("User")]
+    [HttpGet]
     public async Task<IActionResult> GetUserAsync(
         CancellationToken cancellationToken)
     {
         return Ok(await _userService.GetUserAsync(HttpContext.User, cancellationToken));
     }
 
-    [HttpPut("User")]
+    [HttpPut]
     public async Task<IActionResult> UpdateUserAsync(
         UpdateUserRequest request, CancellationToken cancellationToken)
     {
@@ -49,7 +49,7 @@ public class UsersController : ControllerBase
         return BadRequest();
     }
 
-    [HttpDelete("User")]
+    [HttpDelete]
     public async Task<IActionResult> DeleteUserAsync(
         CancellationToken cancellationToken)
     {
@@ -60,14 +60,14 @@ public class UsersController : ControllerBase
         return BadRequest();
     }
 
-    [HttpPost("User/Login"), AllowAnonymous]
+    [HttpPost("Login"), AllowAnonymous]
     public async Task<IActionResult> LoginUserAsync(
         LoginUserRequest request, CancellationToken cancellationToken)
     {
         return Ok(await _sessionService.LoginUserAsync(request, cancellationToken));
     }
 
-    [HttpPost("User/RefreshSession")]
+    [HttpPost("RefreshSession")]
     public async Task<IActionResult> RefreshUserSessionAsync(
         RefreshUserSessionRequest request, CancellationToken cancellationToken)
     {

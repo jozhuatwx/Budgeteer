@@ -4,17 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace Playground.Server.Controllers;
 
 [ApiController, Route("[controller]"), Authorize]
-public class NotificationsController : Controller
+public class NotificationController : Controller
 {
     private readonly NotificationService _notificationService;
 
-    public NotificationsController(
+    public NotificationController(
         NotificationService notificationService)
     {
         _notificationService = notificationService;
     }
 
-    [HttpGet]
+    [HttpGet("/All")]
     public async Task<IActionResult> GetNotificationsAsync(
         CancellationToken cancellationToken)
     {
@@ -23,5 +23,13 @@ public class NotificationsController : Controller
             return Ok(await _notificationService.GetNotificationsAsync(userId, cancellationToken));
         }
         return BadRequest();
+    }
+
+    [HttpPut("/{id:int}")]
+    public async Task<IActionResult> UpdateNotificationAsync(
+        int id, CancellationToken cancellationToken)
+    {
+        await _notificationService.ReadNotificationAsync(id, cancellationToken);
+        return Ok();
     }
 }

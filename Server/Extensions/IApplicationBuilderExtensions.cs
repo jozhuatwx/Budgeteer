@@ -4,9 +4,9 @@ namespace Playground.Server.Extensions;
 
 public static class IApplicationBuilderExtensions
 {
-    public static IApplicationBuilder SeedData(this IApplicationBuilder ApplicationBuilder)
+    public static IApplicationBuilder SeedData(this IApplicationBuilder applicationBuilder)
     {
-        using var scope = ApplicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+        using var scope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
         using var context = scope.ServiceProvider
             .GetRequiredService<IDbContextFactory<PlaygroundContext>>()
             .CreateDbContext();
@@ -26,6 +26,6 @@ public static class IApplicationBuilderExtensions
 
         context.SaveChanges();
         
-        return ApplicationBuilder;
+        return applicationBuilder;
     }
 }

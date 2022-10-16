@@ -5,6 +5,14 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Logging
+builder.Services
+    .AddLogging((options) =>
+    {
+        options.ClearProviders();
+        options.AddConsole();
+    });
+
 // Options
 builder.Services
     .Configure<PlaygroundOptions>(builder.Configuration);
@@ -55,7 +63,10 @@ builder.Services
 
 // Controller
 builder.Services
-    .AddControllers();
+    .AddControllers((options) =>
+    {
+        options.Filters.Add<ExceptionFilter>();
+    });
 
 // Swagger
 builder.Services
@@ -101,6 +112,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapHub<NotificationHub>("/notification");
+app.MapHub<NotificationHub>("/Notification");
 
 app.Run();
