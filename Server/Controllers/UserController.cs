@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Net.Mime;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Playground.Server.Controllers;
 
-[ApiController, Route("[controller]"), Authorize]
+[ApiController, Route("[controller]"), Authorize, Produces(MediaTypeNames.Application.Json)]
 public class UserController : ControllerBase
 {
     private readonly UserService _userService;

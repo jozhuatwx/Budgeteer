@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http.Extensions;
+﻿using System.Net.Mime;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Playground.Server.Filters;
 
@@ -37,7 +37,7 @@ public class ExceptionFilter : ExceptionFilterAttribute
         }
         
         httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-        httpContext.Response.ContentType = Application.Json;
+        httpContext.Response.ContentType = MediaTypeNames.Application.Json;
 
         if (!_isDevelopment)
         {
