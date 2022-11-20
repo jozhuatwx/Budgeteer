@@ -24,7 +24,7 @@ public class UserService
         CancellationToken cancellationToken = default)
     {
         return await _context.Users
-            .GetAllAsync<User, UserResponse>(_mapper.ConfigurationProvider);
+            .GetAllAsync<User, UserResponse>(_mapper.ConfigurationProvider, cancellationToken: cancellationToken);
     }
 
     public async Task<UserResponse> CreateUserAsync(
@@ -37,7 +37,7 @@ public class UserService
             HashedPassword = await CryptographyUtility.HashPasswordAsync(request.Password, cancellationToken)
         };
 
-        await _context.Users.CreateAsync(user, cancellationToken: cancellationToken);
+        _context.Users.Create(user, cancellationToken: cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<UserResponse>(user);

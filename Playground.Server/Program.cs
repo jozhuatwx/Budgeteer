@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
 using System.Text;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,7 +56,6 @@ builder.Services
     .AddScoped<UserService>()
     .AddScoped<SessionService>()
     .AddScoped<NotificationService>()
-    // Background
     .AddHostedService<BackgroundWorkerService>()
     .AddSingleton<BackgroundQueueService>();
 
@@ -68,7 +70,7 @@ builder.Services
         options.Filters.Add<ExceptionFilter>();
     });
 
-// Swagger
+// OpenAPI
 builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen((options) =>
@@ -95,6 +97,29 @@ builder.Services
                 Array.Empty<string>()
             }
         });
+    });
+
+// OpenTelemetry
+builder.Services
+    .AddOpenTelemetryMetrics((options) =>
+    {
+        options
+            .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(builder.Environment.ApplicationName))
+            .AddPrometheusExporter()
+            .AddRuntimeInstrumentation()
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddEventCountersInstrumentation((counters) => counters.AddEventSources(
+                // https://learn.microsoft.com/en-us/dotnet/core/diagnostics/available-counters
+                // "System.Runtime",
+                "Microsoft.AspNetCore.Hosting",
+                "Microsoft.AspNetCore.Http.Connections",
+                // "Microsoft-AspNetCore-Server-Kestrel",
+                "System.Net.Http",
+                "System.Net.NameResolution",
+                "System.Net.Security",
+                "System.Net.Sockets")
+            );
     });
 
 var app = builder.Build();

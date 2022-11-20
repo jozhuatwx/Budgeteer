@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Playground.Infrastructure.DTOs;
+namespace Playground.Shared.DTOs;
 
 public record CreateUserRequest([Required] string Name, [Required, EmailAddress] string Email, [Required, StringLength(50, MinimumLength = 8)] string Password);
 public record UpdateUserRequest([Required] string Name, [Required, EmailAddress] string Email);

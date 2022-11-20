@@ -34,7 +34,7 @@ public class NotificationService
                 .GetRequiredService<IDbContextFactory<PlaygroundContext>>()
                 .CreateDbContextAsync(cancellationToken))
             {
-                await context.Notifications.CreateAsync(new()
+                context.Notifications.Create(new()
                 {
                     Message = message,
                     UserId = userId

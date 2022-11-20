@@ -4,12 +4,12 @@ namespace Playground.Server.Extensions;
 
 public static class DbSetExtensions
 {
-    public static async Task CreateAsync<TEntity>(this DbSet<TEntity> dbSet,
+    public static void Create<TEntity>(this DbSet<TEntity> dbSet,
         TEntity entity, CancellationToken cancellationToken = default)
         where TEntity : BaseEntity
     {
         entity.CreatedDateTime = DateTime.UtcNow;
-        await dbSet.AddAsync(entity, cancellationToken);
+        dbSet.Add(entity);
     }
 
     public static void Update<TEntity>(this DbSet<TEntity> dbSet,

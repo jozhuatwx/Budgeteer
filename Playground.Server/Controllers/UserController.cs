@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Playground.Server.Controllers;
 
-[ApiController, Route("[controller]"), Authorize, Produces(MediaTypeNames.Application.Json)]
+[ApiController, Route("[controller]"), Authorize]
+[Produces(MediaTypeNames.Application.Json), ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
 public class UserController : ControllerBase
 {
     private readonly UserService _userService;
@@ -19,6 +20,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("All")]
+    [ProducesResponseType(typeof(ICollection<UserResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetUsersAsync(
         CancellationToken cancellationToken)
     {
@@ -26,6 +28,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost, AllowAnonymous]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> CreateUserAsync(
         CreateUserRequest request, CancellationToken cancellationToken)
     {
@@ -33,6 +36,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetUserAsync(
         CancellationToken cancellationToken)
     {
@@ -40,6 +44,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPut]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK), ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateUserAsync(
         UpdateUserRequest request, CancellationToken cancellationToken)
     {
@@ -51,6 +56,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK), ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> DeleteUserAsync(
         CancellationToken cancellationToken)
     {
@@ -62,6 +68,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("Login"), AllowAnonymous]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK), ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> LoginUserAsync(
         LoginUserRequest request, CancellationToken cancellationToken)
     {
@@ -69,6 +76,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("RefreshSession")]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK), ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RefreshUserSessionAsync(
         RefreshUserSessionRequest request, CancellationToken cancellationToken)
     {

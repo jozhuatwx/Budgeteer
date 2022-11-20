@@ -1,4 +1,4 @@
-﻿global using Playground.Infrastructure.DTOs;
+﻿global using Playground.Shared.DTOs;
 global using Playground.Server.Options;
 global using Playground.Server.Contexts;
 global using Playground.Server.Entities;
