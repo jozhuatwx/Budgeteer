@@ -2,7 +2,7 @@ using System.Security.Claims;
 
 namespace Playground.Server.Extensions;
 
-public static class ClaimsPrincipalExtensions
+public static class ClaimsExtensions
 {
     public static bool TryGetClaim(this ClaimsPrincipal claims,
         string claimType, out string claim)

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Playground.Server.Extensions;
 
-public static class IQueryableExtensions
+public static class QueryExtensions
 {
     public static async Task<List<TEntity>> GetAllAsync<TEntity>(this IQueryable<TEntity> dbSet,
         bool track = false, bool withSoftDeleted = false, int? skip = null, int? take = null, CancellationToken cancellationToken = default)

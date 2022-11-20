@@ -4,6 +4,7 @@ global using Playground.Server.Contexts;
 global using Playground.Server.Entities;
 global using Playground.Server.Utilities;
 global using Playground.Server.Extensions;
-global using Playground.Server.Filters;
+global using Playground.Server.Services.Interfaces;
 global using Playground.Server.Services;
 global using Playground.Server.Hubs;
+global using Playground.Server.Modules;

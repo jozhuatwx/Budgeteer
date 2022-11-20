@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Playground.Server.Services;
 
-public class NotificationService
+public class NotificationService : INotificationService
 {
     private readonly PlaygroundContext _context;
-    private readonly BackgroundQueueService _backgroundQueueService;
+    private readonly IBackgroundQueueService _backgroundQueueService;
     private readonly IServiceScopeFactory _serviceScopeFactory;
     private readonly IMapper _mapper;
 
     public NotificationService(
         IDbContextFactory<PlaygroundContext> contextFactory,
-        BackgroundQueueService backgroundQueueService,
+        IBackgroundQueueService backgroundQueueService,
         IServiceScopeFactory serviceScopeFactory,
         IMapper mapper)
     {

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Playground.Server.Services;
 
-public class SessionService
+public class SessionService : ISessionService
 {
     private readonly PlaygroundContext _context;
     private readonly JwtOptions _jwtOptions;

@@ -2,7 +2,7 @@
 
 namespace Playground.Server.Services;
 
-public class BackgroundQueueService
+public class BackgroundQueueService : IBackgroundQueueService
 {
     private readonly Channel<Func<CancellationToken, Task>> _channel;
 

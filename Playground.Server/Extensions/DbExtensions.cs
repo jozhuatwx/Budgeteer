@@ -2,7 +2,7 @@
 
 namespace Playground.Server.Extensions;
 
-public static class DbSetExtensions
+public static class DbExtensions
 {
     public static void Create<TEntity>(this DbSet<TEntity> dbSet,
         TEntity entity, CancellationToken cancellationToken = default)

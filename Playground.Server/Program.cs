@@ -1,10 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using System.Text;
-using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,51 +51,20 @@ builder.Services
 
 // Service
 builder.Services
-    .AddScoped<UserService>()
-    .AddScoped<SessionService>()
-    .AddScoped<NotificationService>()
+    .AddScoped<IUserService, UserService>()
+    .AddScoped<ISessionService, SessionService>()
+    .AddScoped<INotificationService, NotificationService>()
     .AddHostedService<BackgroundWorkerService>()
-    .AddSingleton<BackgroundQueueService>();
+    .AddSingleton<IBackgroundQueueService, BackgroundQueueService>();
 
 // SignalR
 builder.Services
     .AddSignalR();
 
-// Controller
-builder.Services
-    .AddControllers((options) =>
-    {
-        options.Filters.Add<ExceptionFilter>();
-    });
-
 // OpenAPI
 builder.Services
     .AddEndpointsApiExplorer()
-    .AddSwaggerGen((options) =>
-    {
-        options.AddSecurityDefinition("Bearer", new()
-        {
-            In = ParameterLocation.Header,
-            Name = "Authorization",
-            Type = SecuritySchemeType.Http,
-            BearerFormat = "JWT",
-            Scheme = "Bearer"
-        });
-        options.AddSecurityRequirement(new()
-        {
-            {
-                new()
-                {
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
-                },
-                Array.Empty<string>()
-            }
-        });
-    });
+    .AddSwaggerGen();
 
 // OpenTelemetry
 builder.Services
@@ -136,7 +103,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-app.MapHub<NotificationHub>("/Notification");
+app.MapUserEndpoints();
+app.MapNotificationEndpoints();
+
+app.MapHub<NotificationHub>("/notification");
 
 app.Run();

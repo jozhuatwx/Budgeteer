@@ -2,7 +2,7 @@
 
 namespace Playground.Server.Extensions;
 
-public static class IApplicationBuilderExtensions
+public static class SeedDataExtensions
 {
     public static IApplicationBuilder SeedData(this IApplicationBuilder applicationBuilder)
     {

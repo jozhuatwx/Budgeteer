@@ -2,10 +2,10 @@
 
 public class BackgroundWorkerService : BackgroundService
 {
-    private readonly BackgroundQueueService _backgroundQueueService;
+    private readonly IBackgroundQueueService _backgroundQueueService;
 
     public BackgroundWorkerService(
-        BackgroundQueueService backgroundQueueService)
+        IBackgroundQueueService backgroundQueueService)
     {
         _backgroundQueueService = backgroundQueueService;
     }
