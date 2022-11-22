@@ -26,6 +26,9 @@ public static class AuthenticationAuthorizationExtensions
         services
             .AddAuthorization();
 
+        services
+            .AddCors();
+
         return services;
     }
 

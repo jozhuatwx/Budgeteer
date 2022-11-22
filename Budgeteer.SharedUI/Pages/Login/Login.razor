@@ -1,0 +1,23 @@
+﻿@page "/login"
+@inject IUserService userService
+
+<PageTitle>Login</PageTitle>
+
+<form>
+    <input type="email" @bind="email" />
+    <input type="password" @bind="password" />
+</form>
+
+<button @onclick="LoginUserAsync">Login</button>
+
+@code {
+    private UserSessionResponse? _userSession;
+    private string? email;
+    private string? password;
+
+    private async void LoginUserAsync()
+    {
+        if (email != null && password != null)
+            _userSession = await userService.LoginUserAsync(new(email, password));
+    }
+}
