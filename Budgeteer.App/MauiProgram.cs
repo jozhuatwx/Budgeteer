@@ -1,5 +1,4 @@
-﻿using Budgeteer.SharedUI.Services;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Budgeteer.App;
 
@@ -23,7 +22,7 @@ public static class MauiProgram
 #endif
 
         builder.Services
-            .AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7207") })
+            .AddSingleton(sp => new HttpClient() { BaseAddress = new("https://localhost:7094") })
             .AddScoped<IUserService, UserService>();
 
         return builder.Build();
