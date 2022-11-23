@@ -1,17 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
+<div>
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
+        @Body
     </main>
+
+    <div class="
+         absolute inset-x-0 bottom-0 h-16
+         rounded-t-2xl
+         bg-slate-900">
+        <div class="
+             h-full py-0.5
+             flex flex-row justify-evenly items-center
+             font-extrabold text-transparent
+             bg-clip-text bg-gradient-to-br from-violet-700 to-fuchsia-600">
+            @for (int i = 0; i < 5; i++)
+            {
+                <span class="material-symbols-rounded text-2xl">home</span>
+            }
+        </div>
+    </div>
 </div>
