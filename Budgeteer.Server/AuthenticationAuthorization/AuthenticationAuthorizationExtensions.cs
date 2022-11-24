@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 namespace Budgeteer.Server.AuthenticationAuthorization;
@@ -24,7 +25,8 @@ public static class AuthenticationAuthorizationExtensions
             });
 
         services
-            .AddAuthorization();
+            .AddAuthorization()
+            .AddScoped<IAuthorizationHandler, AuthorizationHandler>();
 
         services
             .AddCors();
@@ -44,7 +46,12 @@ public static class AuthenticationAuthorizationExtensions
     public static RouteHandlerBuilder RequireAuthorizationWithOpenApi(this RouteHandlerBuilder builder)
     {
         builder
-            .RequireAuthorization()
+            .RequireAuthorization(options =>
+            {
+                options
+                    .RequireAuthenticatedUser()
+                    .AddRequirements(new AuthorizationRequirement());
+            })
             .Produces(StatusCodes.Status401Unauthorized)
             .AddOpenApiAuthorizationRequirement();
 

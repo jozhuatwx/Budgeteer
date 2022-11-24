@@ -71,11 +71,11 @@ public class SessionService : ISessionService
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new(new Claim[]
-            {
-                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new(ClaimTypes.Name, user.Name),
-                new(ClaimTypes.Email, user.Email)
-            }),
+                {
+                    new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new(ClaimTypes.Name, user.Name),
+                    new(ClaimTypes.Email, user.Email)
+                }),
                 Issuer = _jwtOptions.Issuer,
                 Audience = _jwtOptions.Audience,
                 Expires = DateTime.UtcNow.AddMinutes(15),

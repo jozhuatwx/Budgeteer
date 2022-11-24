@@ -59,20 +59,28 @@ public class UserService : IUserService
         return _mapper.Map<UserResponse>(user);
     }
 
-    public async Task<UserResponse?> DeleteUserAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteUserAsync(int id, CancellationToken cancellationToken = default)
     {
-        var user = await _unitOfWork.Users.GetAsync<User>(id, _mapper.ConfigurationProvider, track: true, cancellationToken: cancellationToken);
-
-        if (user == null)
+        if (_unitOfWork.Users.IsRelational)
         {
-            return null;
+            if (await _unitOfWork.Users.ExecuteDeleteAsync(id, cancellationToken) <= 0)
+                return false;
         }
+        else
+        {
+            var user = await _unitOfWork.Users.GetAsync<User>(id, _mapper.ConfigurationProvider, track: true, cancellationToken: cancellationToken);
 
-        _unitOfWork.Users.Delete(user);
-        await _unitOfWork.SaveAsync(cancellationToken);
+            if (user == null)
+            {
+                return false;
+            }
+
+            await _unitOfWork.Users.DeleteAsync(user);
+            await _unitOfWork.SaveAsync(cancellationToken);
+        }
 
         await _notificationService.SendIndividualAsync(id, "Deleted user!", cancellationToken);
 
-        return _mapper.Map<UserResponse>(user);
+        return true;
     }
 }

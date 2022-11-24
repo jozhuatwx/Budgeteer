@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeteer.Server", "Budgete
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeteer.Shared", "Budgeteer.Shared\Budgeteer.Shared.csproj", "{BCCC46F2-D619-4C54-A016-B7F1AD20FF2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeteer.App", "Budgeteer.App\Budgeteer.App.csproj", "{A8916FF6-5C26-4983-B3D9-C06AF631477D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeteer.SharedUI", "Budgeteer.SharedUI\Budgeteer.SharedUI.csproj", "{40585E48-ED60-4AC8-9720-55B663171F52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeteer.Web", "Budgeteer.Web\Budgeteer.Web.csproj", "{C01CD57A-4A44-4236-A5C7-CC72D109B390}"
@@ -32,10 +30,6 @@ Global
 		{BCCC46F2-D619-4C54-A016-B7F1AD20FF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCCC46F2-D619-4C54-A016-B7F1AD20FF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCCC46F2-D619-4C54-A016-B7F1AD20FF2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8916FF6-5C26-4983-B3D9-C06AF631477D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8916FF6-5C26-4983-B3D9-C06AF631477D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8916FF6-5C26-4983-B3D9-C06AF631477D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8916FF6-5C26-4983-B3D9-C06AF631477D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40585E48-ED60-4AC8-9720-55B663171F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40585E48-ED60-4AC8-9720-55B663171F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40585E48-ED60-4AC8-9720-55B663171F52}.Release|Any CPU.ActiveCfg = Release|Any CPU

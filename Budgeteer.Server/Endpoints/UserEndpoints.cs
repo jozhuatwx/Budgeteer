@@ -68,7 +68,10 @@ public static class UserEndpoints
     {
         if (context.User.TryGetId(out var id))
         {
-            return Results.Ok(await service.DeleteUserAsync(id, cancellationToken));
+            if (await service.DeleteUserAsync(id, cancellationToken))
+                return Results.Ok();
+            else
+                return Results.NotFound();
         }
         return Results.Unauthorized();
     }

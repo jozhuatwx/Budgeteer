@@ -1,19 +1,28 @@
 ﻿using System.Linq.Expressions;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Budgeteer.Server.Data;
 
 public class BaseRepository<TEntity>
     where TEntity : BaseEntity
 {
-    public IQueryable<TEntity> Query => _dbSet.AsQueryable();
+    public bool IsRelational { get; init; }
+
     private readonly DbSet<TEntity> _dbSet;
 
     public BaseRepository(BudgeteerContext context)
     {
         _dbSet = context.Set<TEntity>();
+        IsRelational = context.GetService<IDatabaseCreator>() is RelationalDatabaseCreator;
     }
+
+    public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> func, bool withSoftDeleted = false, CancellationToken cancellationToken = default) =>
+        await _dbSet
+            .WithSoftDeleted(withSoftDeleted)
+            .AnyAsync(func, cancellationToken: cancellationToken);
 
     public void Create(TEntity entity)
     {
@@ -63,11 +72,14 @@ public class BaseRepository<TEntity>
         _dbSet.UpdateRange(entities);
     }
 
-    public void Delete(TEntity entity, bool permanent = false)
+    public async Task DeleteAsync(TEntity entity, bool permanent = false)
     {
         if (permanent)
         {
-            _dbSet.Remove(entity);
+            if (IsRelational)
+                await ExecuteDeleteAsync(entity.Id);
+            else
+                _dbSet.Remove(entity);
         }
         else
         {
@@ -88,21 +100,42 @@ public class BaseRepository<TEntity>
             _dbSet.UpdateRange(entities);
         }
     }
+
+    public async Task<int> ExecuteDeleteAsync(int id, CancellationToken cancellationToken = default) =>
+        await ExecuteDeleteAsync(entity => entity.Id == id, cancellationToken);
+
+    public async Task<int> ExecuteDeleteAsync(Expression<Func<TEntity, bool>> func, CancellationToken cancellationToken = default)
+    {
+        if (!IsRelational)
+            throw new NotSupportedException();
+
+        return await _dbSet
+            .Where(func)
+            .ExecuteDeleteAsync(default);
+    }
 }
 
 file static class QueryExtensions
 {
+    public static IQueryable<TEntity> WithSoftDeleted<TEntity>(this IQueryable<TEntity> query, bool withSoftDeleted)
+        where TEntity : BaseEntity
+    {
+        if (!withSoftDeleted)
+            query.Where(entity => entity.DeletedDateTime == null);
+
+        return query;
+    }
+
     public static IQueryable<TEntity> DefaultQueryOptions<TEntity>(this IQueryable<TEntity> query, bool track, bool withSoftDeleted, params Expression<Func<TEntity, object>>[]? includes)
         where TEntity : BaseEntity
     {
+        query.WithSoftDeleted(withSoftDeleted);
+
         if (includes != null)
             query = includes.Aggregate(query, (current, include) => current.Include(include));
 
         if (!track)
             query.AsNoTracking();
-
-        if (!withSoftDeleted)
-            query.Where(entity => entity.DeletedDateTime == null);
 
         return query;
     }
