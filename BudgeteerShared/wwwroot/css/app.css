@@ -1,0 +1,38 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Open Sans';
+    background-color: whitesmoke;
+}
+
+.vertical-stack-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.horizontal-stack-layout {
+    display: flex;
+    width: 100%
+}
+
+.grid {
+    display: grid;
+}
+
+.label {
+    color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: white;
+        background-color: black;
+    }
+
+    .label {
+        color: white;
+    }
+}
+

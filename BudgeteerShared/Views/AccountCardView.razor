@@ -1,0 +1,17 @@
+﻿<div class="vertical-stack-layout account-card">
+    @*First Row*@
+    <div class="horizontal-stack-layout">
+        <div class="label bank-name">@Name</div>
+
+    </div>
+
+    @*Second Row*@
+    <div class="horizontal-stack-layout">
+        <div class="label currency">@Balance.Currency.ToSymbol()</div>
+
+        <div class="label value">@Balance.Value</div>
+
+    </div>
+
+</div>
+

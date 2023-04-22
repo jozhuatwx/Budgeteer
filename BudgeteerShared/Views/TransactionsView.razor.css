@@ -1,0 +1,43 @@
+﻿.transaction-card {
+    row-gap: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom right, slategray, darkslategray);
+}
+
+.transaction-item {
+    column-gap: 10px;
+}
+
+.transaction-icon {
+    align-self: center;
+    aspect-ratio: 1 / 1;
+    width: 35px;
+}
+
+.transaction-details {
+    width: 100%;
+}
+
+.transaction-title {
+    font-size: small;
+    color: white;
+}
+
+.transaction-amount {
+    margin-left: auto;
+    font-size: small;
+    color: white;
+}
+
+.transaction-subtitle {
+    font-size: xx-small;
+    color: white;
+}
+
+.transaction-original-amount {
+    margin-left: auto;
+    font-size: xx-small;
+    color: white;
+}
+

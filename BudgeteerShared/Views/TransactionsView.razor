@@ -1,0 +1,24 @@
+﻿<div class="vertical-stack-layout transaction-card">
+    @foreach (var transaction in Transactions)
+    {
+        <div class="horizontal-stack-layout transaction-item">
+            <div class="transaction-icon"></div>
+
+            <div class="vertical-stack-layout transaction-details">
+                <div class="horizontal-stack-layout">
+                    <div class="label transaction-title">@transaction.Name</div>
+
+                    <div class="label transaction-amount">@transaction.Amount</div>
+                </div>
+
+                <div class="horizontal-stack-layout">
+                    <div class="label transaction-subtitle">@transaction.Timestamp | @transaction.Category</div>
+
+                    <div class="label transaction-original-amount">@transaction.OriginalAmount</div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+

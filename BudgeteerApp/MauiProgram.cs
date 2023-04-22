@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using BudgeteerApp.Data;
 
 namespace BudgeteerApp;
 
@@ -9,11 +8,7 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-			});
+			.UseMauiApp<App>();
 
 		builder.Services.AddMauiBlazorWebView();
 
@@ -22,7 +17,7 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		builder.Services.AddSingleton<WeatherForecastService>();
+		builder.Services.AddSingleton<IAccountsService, AccountsService>();
 
 		return builder.Build();
 	}

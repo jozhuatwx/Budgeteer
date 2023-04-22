@@ -1,0 +1,16 @@
+﻿@page "/"
+
+<div class="vertical-stack-layout account-page">
+    @if (Account != null)
+    {
+        <AccountCardView Name="@Account.Name"
+                         Balance="@Account.Balance" />
+
+        <div class="label">Transactions</div>
+
+        <TransactionsView Transactions="@Account.Transactions" />
+    }
+
+
+</div>
+
