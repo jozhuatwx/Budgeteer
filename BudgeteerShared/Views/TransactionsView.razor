@@ -2,7 +2,7 @@
     @foreach (var transaction in Transactions)
     {
         <div class="horizontal-stack-layout transaction-item">
-            <div class="transaction-icon"></div>
+            <span class="icon mdi mdi-@transaction.Category.Icon transaction-icon"></span>
 
             <div class="vertical-stack-layout transaction-details">
                 <div class="horizontal-stack-layout">
@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="horizontal-stack-layout">
-                    <div class="label transaction-subtitle">@transaction.Timestamp | @transaction.Category</div>
+                    <div class="label transaction-subtitle">@transaction.Category.Name | @transaction.Timestamp</div>
 
                     <div class="label transaction-original-amount">@transaction.OriginalAmount</div>
                 </div>

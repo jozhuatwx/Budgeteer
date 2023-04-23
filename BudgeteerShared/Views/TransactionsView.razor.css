@@ -2,17 +2,18 @@
     row-gap: 10px;
     padding: 10px 15px;
     border-radius: 10px;
-    background-image: linear-gradient(to bottom right, slategray, darkslategray);
+    background-color: var(--primary-light-color);
 }
 
 .transaction-item {
-    column-gap: 10px;
+    column-gap: 5px;
 }
 
 .transaction-icon {
     align-self: center;
     aspect-ratio: 1 / 1;
-    width: 35px;
+    width: 30px;
+    color: black;
 }
 
 .transaction-details {
@@ -21,23 +22,23 @@
 
 .transaction-title {
     font-size: small;
-    color: white;
+    color: black;
 }
 
 .transaction-amount {
     margin-left: auto;
     font-size: small;
-    color: white;
+    color: black;
 }
 
 .transaction-subtitle {
     font-size: xx-small;
-    color: white;
+    color: black;
 }
 
 .transaction-original-amount {
     margin-left: auto;
     font-size: xx-small;
-    color: white;
+    color: black;
 }
 

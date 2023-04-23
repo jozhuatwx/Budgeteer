@@ -8,7 +8,7 @@ public class Transaction
 
 	public Money OriginalAmount { get; set; }
 
-	public string Category { get; set; }
+	public Category Category { get; set; }
 	public string Notes { get; set; }
 }
 

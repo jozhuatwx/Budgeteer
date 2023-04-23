@@ -30,7 +30,11 @@ public class AccountsService : IAccountsService
                             Currency = CurrencyEnum.GBP,
                             Value = 1.9m
                         },
-                        Category = "Food"
+                        Category = new()
+                        {
+                            Icon = "food",
+                            Name = "Food"
+                        }
                     },
                     new()
                     {
@@ -46,7 +50,11 @@ public class AccountsService : IAccountsService
                             Currency = CurrencyEnum.GBP,
                             Value = 1.9m
                         },
-                        Category = "Food"
+                        Category = new()
+                        {
+                            Icon = "food",
+                            Name = "Food"
+                        }
                     }
                 }
             }

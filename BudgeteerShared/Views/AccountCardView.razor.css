@@ -2,7 +2,7 @@
     padding: 10px 15px;
     row-gap: 5px;
     border-radius: 10px;
-    background-image: linear-gradient(to bottom right, mediumpurple, blue);
+    background-image: linear-gradient(to bottom right, var(--secondary-accent), var(--primary-accent));
 }
 
 .bank-name {
@@ -12,13 +12,13 @@
 
 .currency {
     padding: 5px 15px;
-    background-color: gold;
+    background-color: var(--secondary-dark-color);
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     align-self: center;
     font-size: medium;
     font-weight: 600;
-    color: black;
+    color: var(--primary-accent);
 }
 
 .value {
