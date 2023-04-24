@@ -6,8 +6,6 @@ public class Account
     public required string Name { get; set; }
     public required CurrencyEnum Currency { get; set; }
 
-    public virtual IEnumerable<Transaction>? Transactions { get; set; }
-
     [SetsRequiredMembers]
     public Account(string name, CurrencyEnum currency)
     {

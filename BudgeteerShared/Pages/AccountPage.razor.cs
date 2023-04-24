@@ -15,9 +15,12 @@ public partial class AccountPage
 
     protected override void OnInitialized()
     {
-        Account = AccountService.GetAccounts().First();
-        Transactions = TransactionsService.GetTransactionsByAccountId(Account.Id);
-        Balance = new(Account.Currency, Transactions.Sum(t => t.Category!.IsDebit ? t.Amount.Value : -t.Amount.Value));
+        Account = AccountService.GetAccounts().FirstOrDefault();
+        if (Account != null)
+        {
+            Transactions = TransactionsService.GetTransactionsByAccountId(Account.Id);
+            Balance = new(Account.Currency, Transactions.Sum(t => t.Category!.IsDebit ? t.Amount.Value : -t.Amount.Value));
+        }
     }
 }
 

@@ -1,13 +1,13 @@
-﻿namespace BudgeteerApp.Services;
+﻿namespace BudgeteerShared.Services;
 
 public class CategoriesService : ICategoriesService
 {
-    private IEnumerable<Category> Categories { get; set; }
+    private List<Category> Categories { get; set; } = new();
 
-	public CategoriesService()
-	{
+    public CategoriesService()
+    {
         Initialise();
-	}
+    }
 
     private void Initialise()
     {
@@ -24,12 +24,12 @@ public class CategoriesService : ICategoriesService
         };
     }
 
-    public Category GetCategory(int id)
+    public Category? GetCategory(int id)
     {
         return Categories.FirstOrDefault(c => c.Id == id);
     }
 
-    public IEnumerable<Category> GetCategories()
+    public List<Category> GetCategories()
     {
         return Categories;
     }
