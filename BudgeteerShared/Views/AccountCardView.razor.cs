@@ -2,14 +2,10 @@
 
 public partial class AccountCardView
 {
-	[Parameter]
-	public string Name { get; set; }
+    [Parameter]
+    public required string Name { get; set; }
 
-	[Parameter]
-	public Money Balance { get; set; }
-
-	public AccountCardView()
-	{
-	}
+    [Parameter]
+    public required Money Balance { get; set; }
 }
 

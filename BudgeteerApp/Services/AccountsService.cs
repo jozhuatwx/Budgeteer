@@ -2,63 +2,33 @@
 
 public class AccountsService : IAccountsService
 {
-    public Task<List<Account>> GetAccountsAsync()
+    private IEnumerable<Account> Accounts { get; set; }
+
+    public AccountsService(ITransactionsService transactionsService)
     {
-        return Task.FromResult<List<Account>>(new()
+        Initialise(transactionsService);
+    }
+
+    private void Initialise(ITransactionsService transactionsService)
+    {
+        Accounts = new List<Account>()
         {
-            new()
+            new("HSBC", CurrencyEnum.MYR)
             {
-                Name = "HSBC",
-                Balance = new()
-                {
-                    Currency = CurrencyEnum.MYR,
-                    Value = 1000
-                },
-                Transactions = new()
-                {
-                    new()
-                    {
-                        Timestamp = DateTime.Now,
-                        Name = "McDonald's Lunch",
-                        Amount = new()
-                        {
-                            Currency = CurrencyEnum.MYR,
-                            Value = 10
-                        },
-                        OriginalAmount = new()
-                        {
-                            Currency = CurrencyEnum.GBP,
-                            Value = 1.9m
-                        },
-                        Category = new()
-                        {
-                            Icon = "food",
-                            Name = "Food"
-                        }
-                    },
-                    new()
-                    {
-                        Timestamp = DateTime.Now,
-                        Name = "McDonald's Breakfast",
-                        Amount = new()
-                        {
-                            Currency = CurrencyEnum.MYR,
-                            Value = 10
-                        },
-                        OriginalAmount = new()
-                        {
-                            Currency = CurrencyEnum.GBP,
-                            Value = 1.9m
-                        },
-                        Category = new()
-                        {
-                            Icon = "food",
-                            Name = "Food"
-                        }
-                    }
-                }
+                Id = 1,
+                Transactions = transactionsService.GetTransactionsByAccountId(1)
             }
-        });
+        };
+    }
+
+    public Account GetAccount(int Id)
+    {
+        return Accounts.FirstOrDefault(a => a.Id == Id);
+    }
+
+    public IEnumerable<Account> GetAccounts()
+    {
+        return Accounts;
     }
 }
 

@@ -2,9 +2,17 @@
 
 public class Account
 {
-	public string Name { get; set; }
-	public Money Balance { get; set; }
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public required CurrencyEnum Currency { get; set; }
 
-	public List<Transaction> Transactions { get; set; }
+    public virtual IEnumerable<Transaction>? Transactions { get; set; }
+
+    [SetsRequiredMembers]
+    public Account(string name, CurrencyEnum currency)
+    {
+        Name = name;
+        Currency = currency;
+    }
 }
 

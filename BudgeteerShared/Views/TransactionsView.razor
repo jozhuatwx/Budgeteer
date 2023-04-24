@@ -2,7 +2,7 @@
     @foreach (var transaction in Transactions)
     {
         <div class="horizontal-stack-layout transaction-item">
-            <span class="icon mdi mdi-@transaction.Category.Icon transaction-icon"></span>
+            <span class="icon mdi mdi-@transaction.Category!.Icon transaction-icon"></span>
 
             <div class="vertical-stack-layout transaction-details">
                 <div class="horizontal-stack-layout">

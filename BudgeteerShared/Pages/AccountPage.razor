@@ -4,11 +4,11 @@
     @if (Account != null)
     {
         <AccountCardView Name="@Account.Name"
-                         Balance="@Account.Balance" />
+                         Balance="@Balance" />
 
         <div class="label">Transactions</div>
 
-        <TransactionsView Transactions="@Account.Transactions" />
+        <TransactionsView Transactions="@Transactions" />
     }
 
 

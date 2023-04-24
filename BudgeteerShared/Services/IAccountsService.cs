@@ -2,6 +2,7 @@
 
 public interface IAccountsService
 {
-    Task<List<Account>> GetAccountsAsync();
+    public Account GetAccount(int Id);
+    public IEnumerable<Account> GetAccounts();
 }
 

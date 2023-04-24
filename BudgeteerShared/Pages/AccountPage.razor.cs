@@ -2,18 +2,22 @@
 
 public partial class AccountPage
 {
-	public Account? Account { get; set; }
+    public Account? Account { get; set; }
+    public Money? Balance { get; set; }
+
+    public IEnumerable<Transaction>? Transactions { get; set; }
 
     [Inject]
-    private IAccountsService AccountService { get; set; }
+    private IAccountsService AccountService { get; set; } = null!;
 
-	public AccountPage()
-	{
-	}
+    [Inject]
+    public ITransactionsService TransactionsService { get; set; } = null!;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        Account = (await AccountService.GetAccountsAsync())[0];
+        Account = AccountService.GetAccounts().First();
+        Transactions = TransactionsService.GetTransactionsByAccountId(Account.Id);
+        Balance = new(Account.Currency, Transactions.Sum(t => t.Category!.IsDebit ? t.Amount.Value : -t.Amount.Value));
     }
 }
 
