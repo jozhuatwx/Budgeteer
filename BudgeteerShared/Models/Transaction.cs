@@ -15,9 +15,9 @@ public class Transaction
     public Category? Category { get; set; }
 
     [SetsRequiredMembers]
-    public Transaction(string name, Money amount, int accountId, int categoryId)
+    public Transaction(DateTime timestamp, string name, Money amount, int accountId, int categoryId)
     {
-        Timestamp = DateTime.Now;
+        Timestamp = timestamp;
         Name = name;
         Amount = amount;
         AccountId = accountId;
@@ -25,9 +25,9 @@ public class Transaction
     }
 
     [SetsRequiredMembers]
-    public Transaction(string name, Money amount, Account account, Category category)
+    public Transaction(DateTime timestamp, string name, Money amount, Account account, Category category)
     {
-        Timestamp = DateTime.Now;
+        Timestamp = timestamp;
         Name = name;
         Amount = amount;
         AccountId = account.Id;

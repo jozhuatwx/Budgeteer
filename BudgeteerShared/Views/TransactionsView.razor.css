@@ -1,5 +1,5 @@
 ﻿.transaction-card {
-    row-gap: 10px;
+    row-gap: 15px;
     padding: 10px 15px;
     border-radius: 10px;
     background-color: var(--primary-light-color);
@@ -13,6 +13,7 @@
     align-self: center;
     aspect-ratio: 1 / 1;
     width: 30px;
+    font-size: large;
     color: black;
 }
 
@@ -21,24 +22,22 @@
 }
 
 .transaction-title {
-    font-size: small;
     color: black;
 }
 
 .transaction-amount {
     margin-left: auto;
-    font-size: small;
     color: black;
 }
 
 .transaction-subtitle {
-    font-size: xx-small;
+    font-size: small;
     color: black;
 }
 
 .transaction-original-amount {
     margin-left: auto;
-    font-size: xx-small;
+    font-size: small;
     color: black;
 }
 

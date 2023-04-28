@@ -2,16 +2,15 @@
 
 public partial class AccountPage
 {
-    public Account? Account { get; set; }
-    public Money? Balance { get; set; }
-
-    public List<Transaction>? Transactions { get; set; }
-
     [Inject]
     private IAccountsService AccountService { get; set; } = null!;
 
     [Inject]
     private ITransactionsService TransactionsService { get; set; } = null!;
+
+    private Account? Account { get; set; }
+    private Money? Balance { get; set; }
+    private List<Transaction>? Transactions { get; set; }
 
     protected override void OnInitialized()
     {

@@ -1,0 +1,31 @@
+﻿<div>New Transaction</div>
+
+<EditForm class="vertical-stack-layout"
+          Model="@AddFormModel"
+          OnSubmit="@AddTransaction">
+
+    <InputDate @bind-Value="AddFormModel.Timestamp" />
+    <InputText @bind-Value="AddFormModel.Name" />
+    <InputSelect @bind-Value="AddFormModel.Currency">
+        @foreach (var currency in Enum.GetValues(typeof(CurrencyEnum)))
+        {
+            <option value="@currency">@currency</option>
+        }
+    </InputSelect>
+    <InputNumber @bind-Value="AddFormModel.Amount" />
+    <InputSelect @bind-Value="AddFormModel.CategoryId">
+        @foreach (var category in CategoriesService.GetCategories())
+        {
+            <option value="@category.Id">@category.Name</option>
+        }
+    </InputSelect>
+    <InputSelect @bind-Value="AddFormModel.AccountId">
+        @foreach (var account in AccountsService.GetAccounts())
+        {
+            <option value="@account.Id">@account.Name</option>
+        }
+    </InputSelect>
+
+    <button type="submit">Add</button>
+</EditForm>
+
