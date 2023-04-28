@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "BudgeteerShared.dll": "sha256-1LLxD+TwjeR2k0ZDyfpHpnWWphRfQ2hh7r7QBn\/mslA=",
+      "BudgeteerShared.dll": "sha256-VspC5OWetKRkuKGfe9BtYICop1nc6p\/SHwLnI85QLFU=",
       "BudgeteerWeb.dll": "sha256-uFxOT\/ZFfKs8kGpx9At8JxMbjWeXncWFbyMCPYPGXdk=",
       "Microsoft.AspNetCore.Components.dll": "sha256-e1FSvDdmbYj68zBBJzosmKVC8iw0VJ4tVuy1W18\/jBs=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-wUXuPOatzqqnn6dWB8wmWeZMhC3A7c\/Gaw6nwAoqeds=",

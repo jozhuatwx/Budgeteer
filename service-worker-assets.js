@@ -5,11 +5,11 @@
       "url": "BudgeteerWeb.styles.css"
     },
     {
-      "hash": "sha256-4NwmOC7yb9uqiagz5FXBRK0BwKBFmjCV3Nl8v82Ja1A=",
+      "hash": "sha256-4APoM10bsH7gVCzjQkvxIW1a4xiAZQyw943ye88TVUk=",
       "url": "index.html"
     },
     {
-      "hash": "sha256-lc7MOjvbcpLLrGfvMb1W\/5ZhmPaeJBy9ReTYiUVqEqY=",
+      "hash": "sha256-TxGMOZ+i3j7vehpHEt71UHtLQR5WSs0sDC2x\/FfDaKw=",
       "url": "manifest.json"
     },
     {
@@ -45,11 +45,11 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-EjVi5r4wqzKalWxF0MQ+JrSWHamP50hkzwO7Kruop+I=",
+      "hash": "sha256-P6MGJ0lJRcZkvlKFIKH+Tq6pUXCbvb74hCAlTJV1NTk=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-1LLxD+TwjeR2k0ZDyfpHpnWWphRfQ2hh7r7QBn\/mslA=",
+      "hash": "sha256-VspC5OWetKRkuKGfe9BtYICop1nc6p\/SHwLnI85QLFU=",
       "url": "_framework\/BudgeteerShared.dll"
     },
     {
@@ -165,11 +165,11 @@
       "url": "_framework\/System.Text.Json.dll"
     },
     {
-      "hash": "sha256-1BU9ANxnSrzLDu04Tp8ehe\/596lfNR0fXMUAm+sSY2k=",
+      "hash": "sha256-t9d0ppq7MWPMq98Egz4DWpe4Md4QnEI8VPXm0D\/pZZw=",
       "url": "_content\/BudgeteerShared\/BudgeteerShared.bundle.scp.css"
     },
     {
-      "hash": "sha256-JcwnlwWNVn7kP7j6dFVTt9PtIsMbLqjeCOH3iR2njEU=",
+      "hash": "sha256-4q\/gcpzqOwzICOMTcSVHkk1\/iyaXlk93TugB2xuoIss=",
       "url": "_content\/BudgeteerShared\/css\/app.css"
     },
     {
@@ -191,7 +191,11 @@
     {
       "hash": "sha256-oEo6d+KqX5fjxTiZk\/w9NB3Mi0+ycS5yLwCKwr4IkbA=",
       "url": "_content\/BudgeteerShared\/icon-512.png"
+    },
+    {
+      "hash": "sha256-DYY+ys3vo9z7CL+ZMYhMi9bR0+5eHIo5xO3pX977p4Y=",
+      "url": "_content\/BudgeteerShared\/js\/app.js"
     }
   ],
-  "version": "jQuU95Qu"
+  "version": "AoC8rRwc"
 };

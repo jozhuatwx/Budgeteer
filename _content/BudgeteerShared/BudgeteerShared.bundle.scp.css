@@ -16,19 +16,50 @@
 }
 
 .add[b-ntie8vtd6a] {
-    margin-top: -20px;
-    width: 50px;
-    height: 50px;
+    margin-top: calc(var(--tab-bar-add-offset) * -1);
+    width: 60px;
+    height: 60px;
     border-radius: 100%;
     background-image: linear-gradient(to bottom right, var(--secondary-accent), var(--primary-accent));
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-align: center;
+    font-size: x-large;
     color: var(--primary-light-color);
     transition: ease-in-out 0.2s;
 }
 
+.add .icon[b-ntie8vtd6a] {
+    transition: ease-in-out 0.2s;
+}
+
+.add.active .icon[b-ntie8vtd6a] {
+    transform: rotate(135deg);
+}
+
 .add:hover[b-ntie8vtd6a] {
     transform: scale(1.2);
+}
+
+.add-menu[b-ntie8vtd6a] {
+    position: fixed;
+    bottom: calc(var(--tab-bar-height) - 5px);
+    width: 100%;
+    padding-bottom: calc(var(--tab-bar-add-offset) + 5px);
+    background-color: var(--primary-light-color);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: small;
+    transform: translateY(100%);
+    transition: ease-in-out 0.2s;
+}
+
+.add-menu.active[b-ntie8vtd6a] {
+    transform: translateY(0);
+}
+
+.add-menu-item[b-ntie8vtd6a] {
+    padding: 10px;
 }
 
 /* _content/BudgeteerShared/Pages/AccountPage.razor.rz.scp.css */

@@ -1,10 +1,8 @@
 ﻿{
-  "name": "BudgeteerWeb",
-  "short_name": "BudgeteerWeb",
+  "name": "Budgeteer",
+  "short_name": "Budgeteer",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#03173d",
   "prefer_related_applications": false,
   "icons": [
     {

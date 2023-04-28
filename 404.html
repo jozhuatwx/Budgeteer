@@ -12,6 +12,9 @@
     <link href="manifest.json" rel="manifest" />
     <link href="_content/BudgeteerShared/icon-512.png" rel="apple-touch-icon" sizes="512x512" />
     <link href="_content/BudgeteerShared/icon-192.png" rel="apple-touch-icon" sizes="192x192" />
+
+    <meta name="theme-color" content="var(--secondary-light-color)" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="black" media="(prefers-color-scheme: dark)">
 </head>
 
 <body>
@@ -19,6 +22,8 @@
 
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
+
+    <script src="_content/BudgeteerShared/js/app.js"></script>
 </body>
 
 </html>
