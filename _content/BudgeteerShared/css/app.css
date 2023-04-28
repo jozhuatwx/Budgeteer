@@ -1,0 +1,60 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css');
+
+:root {
+    --primary-accent: #14281D;
+    --secondary-accent: #355834;
+    --primary-dark-color: #6E633D;
+    --secondary-dark-color: #C2A878;
+    --primary-light-color: #E6E3D4;
+    --secondary-light-color: #F1F5F2;
+    --tab-bar-height: 60px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans';
+    background-color: var(--secondary-light-color);
+    overflow: hidden;
+}
+
+.vertical-stack-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal-stack-layout {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.label {
+    color: black;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    height: 100%;
+}
+
+.button {
+    cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: white;
+        background-color: black;
+    }
+
+    .label {
+        color: white;
+    }
+}
+

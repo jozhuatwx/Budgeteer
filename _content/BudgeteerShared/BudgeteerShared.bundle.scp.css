@@ -1,0 +1,116 @@
+/* _content/BudgeteerShared/MainLayout.razor.rz.scp.css */
+.content[b-ntie8vtd6a] {
+    position: fixed;
+    inset: 0 0 var(--tab-bar-height) 0;
+}
+
+.tab-bar[b-ntie8vtd6a] {
+    position: fixed;
+    bottom: -1px;
+    width: 100%;
+    height: var(--tab-bar-height);
+    border-radius: 10px 10px 0 0;
+    justify-content: space-around;
+    background-color: var(--secondary-dark-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.add[b-ntie8vtd6a] {
+    margin-top: -20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-image: linear-gradient(to bottom right, var(--secondary-accent), var(--primary-accent));
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: var(--primary-light-color);
+    transition: ease-in-out 0.2s;
+}
+
+.add:hover[b-ntie8vtd6a] {
+    transform: scale(1.2);
+}
+
+/* _content/BudgeteerShared/Pages/AccountPage.razor.rz.scp.css */
+.account-page[b-wso2oaxd3u] {
+    row-gap: 10px;
+    padding: 10px 10px 0 10px;
+}
+
+/* _content/BudgeteerShared/Views/AccountCardView.razor.rz.scp.css */
+.account-card[b-eoxe9a9he1] {
+    padding: 10px 15px;
+    row-gap: 5px;
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom right, var(--secondary-accent), var(--primary-accent));
+}
+
+.bank-name[b-eoxe9a9he1] {
+    font-size: x-large;
+    color: white;
+}
+
+.currency[b-eoxe9a9he1] {
+    padding: 5px 15px;
+    background-color: var(--secondary-dark-color);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    align-self: center;
+    font-size: medium;
+    font-weight: 600;
+    color: var(--primary-accent);
+}
+
+.value[b-eoxe9a9he1] {
+    flex-grow: 2;
+    text-align: right;
+    font-weight: 600;
+    font-size: xx-large;
+    color: white;
+}
+
+/* _content/BudgeteerShared/Views/TransactionsView.razor.rz.scp.css */
+.transaction-card[b-6wpnt8ron3] {
+    row-gap: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: var(--primary-light-color);
+}
+
+.transaction-item[b-6wpnt8ron3] {
+    column-gap: 5px;
+}
+
+.transaction-icon[b-6wpnt8ron3] {
+    align-self: center;
+    aspect-ratio: 1 / 1;
+    width: 30px;
+    color: black;
+}
+
+.transaction-details[b-6wpnt8ron3] {
+    width: 100%;
+}
+
+.transaction-title[b-6wpnt8ron3] {
+    font-size: small;
+    color: black;
+}
+
+.transaction-amount[b-6wpnt8ron3] {
+    margin-left: auto;
+    font-size: small;
+    color: black;
+}
+
+.transaction-subtitle[b-6wpnt8ron3] {
+    font-size: xx-small;
+    color: black;
+}
+
+.transaction-original-amount[b-6wpnt8ron3] {
+    margin-left: auto;
+    font-size: xx-small;
+    color: black;
+}
+
