@@ -3,6 +3,6 @@
 public partial class TransactionsView
 {
     [Parameter]
-    public required IEnumerable<Transaction> Transactions { get; set; }
+    public required List<Transaction> Transactions { get; set; }
 }
 
