@@ -25,41 +25,34 @@
     text-align: center;
     font-size: x-large;
     color: var(--primary-light-color);
-    transition: ease-in-out 0.2s;
 }
 
 .add .icon[b-ntie8vtd6a] {
-    transition: ease-in-out 0.2s;
+    transition: ease-in-out 0.3s;
 }
 
 .add.active .icon[b-ntie8vtd6a] {
-    transform: rotate(135deg);
-}
-
-.add:hover[b-ntie8vtd6a] {
-    transform: scale(1.2);
+    transform: rotate(225deg);
 }
 
 .add-menu[b-ntie8vtd6a] {
     position: fixed;
     bottom: calc(var(--tab-bar-height) - 5px);
-    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: calc(100vw - 30px);
+    height: calc(100vh - var(--tab-bar-height) - var(--tab-bar-add-offset) - 15px);
     padding-bottom: calc(var(--tab-bar-add-offset) + 5px);
-    background-color: var(--primary-light-color);
     border-radius: 10px 10px 0 0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    font-size: small;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: var(--primary-light-color);
     transform: translateY(100%);
-    transition: ease-in-out 0.2s;
+    transition: ease-in-out 0.3s;
 }
 
 .add-menu.active[b-ntie8vtd6a] {
     transform: translateY(0);
-}
-
-.add-menu-item[b-ntie8vtd6a] {
-    padding: 10px;
 }
 
 /* _content/BudgeteerShared/Pages/AccountPage.razor.rz.scp.css */
@@ -100,9 +93,12 @@
     color: white;
 }
 
+/* _content/BudgeteerShared/Views/AddTransactionView.razor.rz.scp.css */
+
+
 /* _content/BudgeteerShared/Views/TransactionsView.razor.rz.scp.css */
 .transaction-card[b-6wpnt8ron3] {
-    row-gap: 10px;
+    row-gap: 15px;
     padding: 10px 15px;
     border-radius: 10px;
     background-color: var(--primary-light-color);
@@ -116,6 +112,7 @@
     align-self: center;
     aspect-ratio: 1 / 1;
     width: 30px;
+    font-size: large;
     color: black;
 }
 
@@ -124,24 +121,22 @@
 }
 
 .transaction-title[b-6wpnt8ron3] {
-    font-size: small;
     color: black;
 }
 
 .transaction-amount[b-6wpnt8ron3] {
     margin-left: auto;
-    font-size: small;
     color: black;
 }
 
 .transaction-subtitle[b-6wpnt8ron3] {
-    font-size: xx-small;
+    font-size: small;
     color: black;
 }
 
 .transaction-original-amount[b-6wpnt8ron3] {
     margin-left: auto;
-    font-size: xx-small;
+    font-size: small;
     color: black;
 }
 
