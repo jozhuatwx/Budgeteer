@@ -44,8 +44,31 @@ body {
     height: 100%;
 }
 
-.button {
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+button,
+.button,
+.button-fill {
     cursor: pointer;
+    height: 35px;
+}
+
+.button-fill {
+    background-image: linear-gradient(to bottom right, var(--secondary-accent), var(--primary-accent));
+    color: var(--primary-light-color);
+}
+
+input,
+select {
+    height: 40px;
+    padding-left: 10px;
+    border: solid 1px var(--primary-accent);
+    border-radius: 5px;
+    background-color: var(--secondary-light-color);
 }
 
 @media (prefers-color-scheme: dark) {

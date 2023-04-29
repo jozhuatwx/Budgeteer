@@ -15,16 +15,6 @@ public class Transaction
     public Category? Category { get; set; }
 
     [SetsRequiredMembers]
-    public Transaction(DateTime timestamp, string name, Money amount, int accountId, int categoryId)
-    {
-        Timestamp = timestamp;
-        Name = name;
-        Amount = amount;
-        AccountId = accountId;
-        CategoryId = categoryId;
-    }
-
-    [SetsRequiredMembers]
     public Transaction(DateTime timestamp, string name, Money amount, Account account, Category category)
     {
         Timestamp = timestamp;

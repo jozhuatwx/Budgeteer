@@ -1,2 +1,15 @@
-﻿
+﻿.add-transaction-form {
+    padding: 15px 10px 0 10px;
+    row-gap: 10px;
+    align-items: stretch;
+}
+
+.form-title {
+    color: black;
+}
+
+button {
+    width: 175px;
+    margin: 0 auto;
+}
 

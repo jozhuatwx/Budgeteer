@@ -10,16 +10,23 @@ public partial class AccountPage
 
     private Account? Account { get; set; }
     private Money? Balance { get; set; }
-    private List<Transaction>? Transactions { get; set; }
+    private ObservableCollection<Transaction>? Transactions { get; set; }
 
     protected override void OnInitialized()
     {
         Account = AccountService.GetAccounts().FirstOrDefault();
         if (Account != null)
         {
-            Transactions = TransactionsService.GetTransactionsByAccountId(Account.Id);
+            Transactions = TransactionsService.GetTransactions();
             Balance = new(Account.Currency, Transactions.Sum(t => t.Category!.IsDebit ? t.Amount.Value : -t.Amount.Value));
+            Transactions.CollectionChanged += TransactionsCollectionChanged;
         }
+    }
+
+    private void TransactionsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        Balance!.Value = Transactions!.Sum(t => t.Category!.IsDebit ? t.Amount.Value : -t.Amount.Value);
+        StateHasChanged();
     }
 }
 

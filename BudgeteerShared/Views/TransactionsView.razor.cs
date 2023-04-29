@@ -3,6 +3,6 @@
 public partial class TransactionsView
 {
     [Parameter]
-    public required List<Transaction> Transactions { get; set; }
+    public required ObservableCollection<Transaction> Transactions { get; set; }
 }
 
