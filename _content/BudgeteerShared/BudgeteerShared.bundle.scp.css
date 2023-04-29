@@ -94,7 +94,20 @@
 }
 
 /* _content/BudgeteerShared/Views/AddTransactionView.razor.rz.scp.css */
+.add-transaction-form[b-1dhuv29ycr] {
+    padding: 15px 10px 0 10px;
+    row-gap: 10px;
+    align-items: stretch;
+}
 
+.form-title[b-1dhuv29ycr] {
+    color: black;
+}
+
+button[b-1dhuv29ycr] {
+    width: 175px;
+    margin: 0 auto;
+}
 
 /* _content/BudgeteerShared/Views/TransactionsView.razor.rz.scp.css */
 .transaction-card[b-6wpnt8ron3] {
